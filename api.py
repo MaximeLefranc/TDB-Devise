@@ -1,6 +1,5 @@
 from datetime import date, timedelta
 from pprint import pprint
-from typing import Literal
 
 import requests
 
@@ -15,7 +14,7 @@ def get_rates(currencies, days=30):
         days (int, optional): number of days for result history. Defaults to 30.
 
     Returns:
-        bool, bool | list, dict : 1. If the request fails - 2. If the request is successful
+        tuple[bool, bool] | tuple[list, dict] : 1. If the request fails - 2. If the request is successful
 
     """
     end_date = date.today()
