@@ -10,10 +10,12 @@
 </head>
 <body class="bg-dark">
     <div class="container-fluid">
-        <div class="row justify-content-center">
+        <div id="grid-graph" class="row justify-content-center" data-currencies="{{currencies}}">
+            {% for currency, rates in data.items %}
             <div class="col-md-10 col-lg-6">
-                <canvas id="chart"></canvas>
+                <canvas id="chart-{{currency}}" data-rates="{{rates}}" data-days-labels="{{days_labels}}"></canvas>
             </div>
+            {% endfor %}
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

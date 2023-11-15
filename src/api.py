@@ -14,13 +14,13 @@ def get_rates(currencies, days=30):
         days (int, optional): number of days for result history. Defaults to 30.
 
     Returns:
-        tuple[bool, bool] | tuple[list, dict] : 1. If the request fails - 2. If the request is successful
+        tuple[bool, bool] | tuple[list[str], dict] : 1. If the request fails - 2. If the request is successful
 
     """
     end_date = date.today()
     start_date = end_date - timedelta(days)
 
-    source = 'USD'
+    source = "USD"
 
     r = requests.get(f'{api_url}/timeframe?access_key={api_key}&start_date={start_date}&end_date={end_date}&currencies={','.join(currencies)}')
     if not r and not r.json():
@@ -28,7 +28,7 @@ def get_rates(currencies, days=30):
 
     api_rates = r.json().get('quotes')
     all_rates = {source + currency: [] for currency in currencies}
-    all_days = api_rates.keys()
+    all_days = list(api_rates.keys())
 
     for each_day in all_days:
         [all_rates[currency].append(rate) for currency, rate in api_rates.get(each_day).items()]
