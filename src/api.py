@@ -3,7 +3,7 @@ from pprint import pprint
 
 import requests
 
-from src.utils.load_env import api_url, api_key
+from utils.load_env import api_url, api_key
 
 
 def get_rates(currencies, days=30):

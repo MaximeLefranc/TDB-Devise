@@ -1,12 +1,11 @@
+from dotenv import load_dotenv
 import os
 from pathlib import Path
 
-from dotenv import load_dotenv
 
-load_dotenv(Path(__file__).resolve().parent.parent.parent / '.env')
+SRC_PATH = Path(__file__).resolve().parent.parent
+
+load_dotenv(SRC_PATH / '../.env')
 
 api_key = os.getenv('ACCESS_KEY')
 api_url = os.getenv('URL_API')
-python_key = os.getenv('PYTHON_SECRET_KEY')
-
-print(python_key)
