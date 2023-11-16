@@ -10,15 +10,24 @@
 </head>
 <body class="bg-dark">
     <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <h1 class="text-white">Tableau de bord - {{page_label}}</h1>
+                <a href="{% url 'home' days_range=7 currencies=currencies %}" class="btn {% if page_label == 'Semaine' %}btn-info{% else %}btn-secondary{% endif %}">Semaine</a>
+                <a href="{% url 'home' days_range=30 currencies=currencies %}" class="btn {% if page_label == 'Mois' %}btn-info{% else %}btn-secondary{% endif %}">Mois</a>
+                <a href="{% url 'home' days_range=365 currencies=currencies %}" class="btn {% if page_label == 'Année' %}btn-info{% else %}btn-secondary{% endif %}">Année</a>
+            </div>
+        </div>
         <div id="grid-graph" class="row justify-content-center" data-currencies="{{currencies}}">
             {% for currency, rates in data.items %}
             <div class="col-md-10 col-lg-6">
-                <canvas id="chart-{{currency}}" data-rates="{{rates}}" data-days-labels="{{days_labels}}"></canvas>
+                <canvas id="chart-{{currency|cut:"USD"}}" data-rates="{{rates}}" data-days-labels="{{days_labels}}"></canvas>
             </div>
             {% endfor %}
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-trendline"></script>
     <script src="{% static 'js/graph.js' %}"></script>
 </body>
 </html>
