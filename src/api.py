@@ -22,7 +22,7 @@ def get_rates(currencies, days=30):
 
     source = "USD"
 
-    r = requests.get(f'{api_url}/timeframe?access_key={api_key}&start_date={start_date}&end_date={end_date}&currencies={','.join(currencies)}')
+    r = requests.get(f'{api_url}/timeframe?access_key={api_key}&start_date={start_date}&end_date={end_date}&currencies={",".join(currencies)}')
     if not r and not r.json():
         return False, False
 
